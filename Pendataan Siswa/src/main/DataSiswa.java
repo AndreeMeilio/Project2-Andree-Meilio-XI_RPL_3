@@ -101,6 +101,11 @@ public class DataSiswa extends javax.swing.JFrame {
         });
 
         cmdEdit.setText("Ubah");
+        cmdEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdEditActionPerformed(evt);
+            }
+        });
 
         cmdTambah.setText("Tambah");
         cmdTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -152,11 +157,12 @@ public class DataSiswa extends javax.swing.JFrame {
 
     private void cmdRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRefreshActionPerformed
         // TODO add your handling code here:
+        showData();
     }//GEN-LAST:event_cmdRefreshActionPerformed
 
     private void cmdHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHapusActionPerformed
         
-        String idWhoWantToBeDelete = tbl_siswa.getValueAt(baris, kolom).toString();
+        String idWhoWantToBeDelete = tbl_siswa.getValueAt(baris, 1).toString();
         
         try{
             // TODO add your handling code here:
@@ -178,17 +184,22 @@ public class DataSiswa extends javax.swing.JFrame {
 
     private void cmdTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTambahActionPerformed
         // TODO add your handling code here:
-        ManageData tambahData = new ManageData(this, true);
+        ManageData tambahData = new ManageData(this, true, "Tambah", "");
         tambahData.setVisible(true);
     }//GEN-LAST:event_cmdTambahActionPerformed
     
     int baris;
-    int kolom;
     private void tbl_siswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_siswaMouseClicked
         // TODO add your handling code here:
         baris = tbl_siswa.getSelectedRow();
-        kolom = tbl_siswa.getSelectedColumn();
     }//GEN-LAST:event_tbl_siswaMouseClicked
+
+    private void cmdEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditActionPerformed
+        // TODO add your handling code here:
+        String nis = tbl_siswa.getValueAt(baris, 1).toString();
+        ManageData tambahData = new ManageData(this, true, "Edit", nis);
+        tambahData.setVisible(true);
+    }//GEN-LAST:event_cmdEditActionPerformed
 
     /**
      * @param args the command line arguments
