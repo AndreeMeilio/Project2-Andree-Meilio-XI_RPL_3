@@ -156,12 +156,13 @@ public class DataSiswa extends javax.swing.JFrame {
 
     private void cmdHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHapusActionPerformed
         
-        String idWhoWantToBeDelete = tbl_siswa.getValueAt(baris, 0).toString();
+        String idWhoWantToBeDelete = tbl_siswa.getValueAt(baris, kolom).toString();
         
         try{
             // TODO add your handling code here:
             Statement stmt = koneksi.createStatement();
             String query = "DELETE FROM t_siswa WHERE nis = "+idWhoWantToBeDelete+";";
+            System.out.println(idWhoWantToBeDelete);
             int berhasil = stmt.executeUpdate(query);
             if (berhasil == 1){
                 JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
@@ -182,9 +183,11 @@ public class DataSiswa extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdTambahActionPerformed
     
     int baris;
+    int kolom;
     private void tbl_siswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_siswaMouseClicked
         // TODO add your handling code here:
         baris = tbl_siswa.getSelectedRow();
+        kolom = tbl_siswa.getSelectedColumn();
     }//GEN-LAST:event_tbl_siswaMouseClicked
 
     /**
